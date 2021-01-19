@@ -4,6 +4,7 @@ orbs:
   aws-s3: circleci/aws-s3@2.0.0
 
 workflows:
+  version: 2
   deploy:
     jobs:
       - build_and_deploy
@@ -18,7 +19,7 @@ jobs:
             ls -la
       - aws-s3/sync:
           aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key:  AWS_SECRET_ACCESS_KEY
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           aws-region: AWS_REGION
           arguments: |
             --delete
