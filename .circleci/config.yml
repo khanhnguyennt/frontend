@@ -14,11 +14,13 @@ jobs:
       - checkout
       - run:
           name: kiem tra source code
-          command: ls -la
+          command: |
+            ls -la
       - aws-s3/sync:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key:  AWS_SECRET_ACCESS_KEY
           aws-region: AWS_REGION
-          arguments: --delete
+          arguments: |
+            --delete
           from: .
           to: s3://web2.babaucanbiet.com
