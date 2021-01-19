@@ -1,0 +1,40 @@
+version: 2.1
+
+orbs:
+  aws-s3: circleci/aws-s3@2.0.0
+
+workflows:
+  version: 2
+  deploy:
+    jobs:
+     # - test
+      - build_and_deploy
+      #     requires:
+      #       - test
+
+jobs:
+  test:
+    docker:
+      - image: 'cimg/python:3.6'
+    steps:
+      - run:
+          name: test choi choi
+          command: |
+            echo "da test roi nha"
+  build_and_deploy:
+    docker:
+      - image: 'cimg/python:3.6'
+    steps:
+      - checkout
+      - run:
+          name: kiem tra source code
+          command: |
+            ls -la
+      - aws-s3/sync:
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          aws-region: AWS_REGION
+          arguments: |
+            --delete
+          from: .
+          to: s3://web2.babaucanbiet.com
