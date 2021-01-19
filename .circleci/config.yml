@@ -7,9 +7,18 @@ workflows:
   version: 2
   deploy:
     jobs:
+      - test
       - build_and_deploy
 
 jobs:
+  test:
+    docker:
+      - image: 'cimg/python:3.6'
+    steps:
+      - run:
+          name: test choi choi
+          command: |
+            echo "da test roi nha"
   build_and_deploy:
     docker:
       - image: 'cimg/python:3.6'
