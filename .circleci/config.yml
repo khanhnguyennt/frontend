@@ -30,6 +30,7 @@ jobs:
           name: kiem tra source code
           command: |
             ls -la
+            echo "lenh thu 2"
       - aws-s3/sync:
           arguments: |
             --delete
