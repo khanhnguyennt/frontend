@@ -3,14 +3,17 @@ version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@2.0.0
 
-workflows:
-  version: 2
-  deploy:
-    jobs:
-     # - test
-      - build_and_deploy
-      #     requires:
-      #       - test
+workflows: # 
+  version: 2 # 
+  dev:
+    jobs: # 
+      - build_and_deploy:
+          bucket: web-dev.web2.babaucanbiet.com
+  prod:
+    jobs: # 
+      - build_and_deploy:
+          bucket: web.web2.babaucanbiet.com
+
 
 jobs:
   test:
@@ -22,6 +25,9 @@ jobs:
           command: |
             echo "da test roi nha"
   build_and_deploy:
+    parameters:
+      bucket:
+        type: string
     docker:
       - image: 'cimg/python:3.6'
     steps:
@@ -35,4 +41,4 @@ jobs:
           arguments: |
             --delete
           from: ./src
-          to: s3://web-dev.web2.babaucanbiet.com
+          to: s3://<< parameters.bucket >>
