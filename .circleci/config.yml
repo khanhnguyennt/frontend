@@ -35,4 +35,4 @@ jobs:
           arguments: |
             --delete
           from: .
-          to: s3://web2.babaucanbiet.com
+          to: s3://web-dev.web2.babaucanbiet.com
