@@ -34,5 +34,5 @@ jobs:
       - aws-s3/sync:
           arguments: |
             --delete
-          from: .
+          from: ./src
           to: s3://web-dev.web2.babaucanbiet.com
