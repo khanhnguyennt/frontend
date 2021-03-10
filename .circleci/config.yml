@@ -21,9 +21,9 @@ jobs:
       - image: 'cimg/python:3.6'
     steps:
       - run:
-          name: test choi choi
+          name: Test step
           command: |
-            echo "da test roi nha"
+            echo "Run test command here"
   build_and_deploy:
     parameters:
       bucket:
@@ -33,10 +33,9 @@ jobs:
     steps:
       - checkout
       - run:
-          name: kiem tra source code
+          name: List files and folder in root of repo
           command: |
             ls -la
-            echo "lenh thu 2"
       - aws-s3/sync:
           arguments: |
             --delete
